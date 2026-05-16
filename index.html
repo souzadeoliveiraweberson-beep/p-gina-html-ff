@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Redação Nota 1000 no ENEM — Guia Completo para Calouros</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy:   #0D1B3E;
+    --navy2:  #091226;
+    --teal:   #00C9A7;
+    --teal2:  #00A88A;
+    --gold:   #FFB627;
+    --red:    #E24B4A;
+    --white:  #FFFFFF;
+    --muted:  #8DB4CC;
+    --card:   #0F2A5C;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--navy2);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── UTILITIES ── */
+  .container { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+  .teal  { color: var(--teal); }
+  .gold  { color: var(--gold); }
+  .red   { color: var(--red);  }
+  .muted { color: var(--muted);}
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: var(--teal);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 1px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, #0D1B3E 0%, #091226 100%);
+    padding: 70px 20px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: var(--teal);
+    opacity: 0.04;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.04;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: rgba(0,201,167,0.12);
+    border: 1px solid rgba(0,201,167,0.3);
+    color: var(--teal);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 12vw, 96px);
+    line-height: 0.95;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .hero h1 .line2 { color: var(--teal); display: block; }
+  .hero h1 .line3 { color: var(--gold); display: block; font-size: clamp(72px, 18vw, 140px); }
+
+  .hero-sub {
+    font-size: clamp(15px, 3vw, 19px);
+    color: var(--muted);
+    margin: 18px auto 0;
+    max-width: 520px;
+    line-height: 1.6;
+  }
+
+  /* ── PAIN SECTION ── */
+  .pain {
+    background: #0A0F1E;
+    padding: 60px 20px;
+    text-align: center;
+    border-top: 2px solid var(--red);
+  }
+  .pain h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 7vw, 52px);
+    margin-bottom: 10px;
+    color: var(--white);
+  }
+  .pain p { color: var(--muted); font-size: 15px; margin-bottom: 32px; }
+
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .pain-item {
+    background: #1A0808;
+    border: 1px solid rgba(226,75,74,0.25);
+    border-left: 3px solid var(--red);
+    border-radius: 10px;
+    padding: 16px 18px;
+    text-align: left;
+    font-size: 14px;
+    color: #F09595;
+    line-height: 1.5;
+  }
+
+  /* ── SOLUTION ── */
+  .solution {
+    padding: 70px 20px;
+    text-align: center;
+    background: linear-gradient(180deg, #091226 0%, #0D1B3E 100%);
+  }
+  .solution h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(34px, 7vw, 54px);
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .solution h2 span { color: var(--teal); }
+  .solution p { color: var(--muted); font-size: 15px; margin-bottom: 40px; }
+
+  /* Book mockup */
+  .book-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 36px 0;
+  }
+  .book {
+    background: linear-gradient(135deg, #0F2A5C, #162D6A);
+    border: 1px solid rgba(0,201,167,0.3);
+    border-radius: 12px;
+    padding: 32px 40px;
+    max-width: 320px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 40px rgba(0,201,167,0.08);
+  }
+  .book::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--teal);
+    border-radius: 12px 12px 0 0;
+  }
+  .book-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .book-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    line-height: 1;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .book-title span { color: var(--teal); display: block; }
+  .book-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .book-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .book-badges {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .book-badge {
+    background: rgba(0,201,167,0.1);
+    border: 1px solid rgba(0,201,167,0.2);
+    color: var(--teal);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  /* ── CHAPTERS ── */
+  .chapters {
+    background: #070E1F;
+    padding: 70px 20px;
+  }
+  .chapters h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 7vw, 50px);
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .chapters .sub {
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 36px;
+  }
+
+  .chapter-list { max-width: 660px; margin: 0 auto; }
+  .chapter-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .chapter-item:last-child { border-bottom: none; }
+  .ch-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--teal);
+    min-width: 36px;
+    line-height: 1;
+  }
+  .ch-info h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .ch-info p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  /* ── PROOF ── */
+  .proof {
+    background: linear-gradient(180deg, #0D1B3E, #091226);
+    padding: 70px 20px;
+    text-align: center;
+  }
+  .proof h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(30px, 6vw, 48px);
+    margin-bottom: 36px;
+  }
+  .proof h2 span { color: var(--gold); }
+
+  .testimonials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    max-width: 760px;
+    margin: 0 auto 40px;
+  }
+  .testimonial {
+    background: var(--card);
+    border: 1px solid rgba(0,201,167,0.15);
+    border-radius: 12px;
+    padding: 22px 20px;
+    text-align: left;
+  }
+  .stars { color: var(--gold); font-size: 13px; margin-bottom: 10px; }
+  .testimonial p { font-size: 13px; color: #C0D8E8; line-height: 1.6; margin-bottom: 12px; font-style: italic; }
+  .testimonial .author { font-size: 12px; color: var(--muted); font-weight: 700; }
+
+  /* ── PRICE / CTA ── */
+  .pricing {
+    background: #070E1F;
+    padding: 70px 20px;
+    text-align: center;
+    border-top: 2px solid var(--teal);
+  }
+  .pricing h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(30px, 6vw, 48px);
+    margin-bottom: 6px;
+  }
+  .pricing p { color: var(--muted); font-size: 14px; margin-bottom: 36px; }
+
+  .price-box {
+    background: linear-gradient(135deg, #0F2A5C, #162D6A);
+    border: 1px solid rgba(0,201,167,0.3);
+    border-radius: 20px;
+    padding: 44px 32px;
+    max-width: 480px;
+    margin: 0 auto 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .price-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--teal), var(--gold));
+  }
+
+  .price-old {
+    font-size: 16px;
+    color: #5A7A8A;
+    text-decoration: line-through;
+    margin-bottom: 4px;
+  }
+  .price-label { font-size: 14px; color: var(--muted); margin-bottom: 8px; }
+  .price-main {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 16vw, 110px);
+    color: var(--gold);
+    line-height: 1;
+    letter-spacing: -2px;
+  }
+  .price-installment { font-size: 13px; color: var(--muted); margin-top: 4px; margin-bottom: 24px; }
+
+  .whats-inside {
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    text-align: left;
+  }
+  .whats-inside h4 { font-size: 12px; font-weight: 700; color: var(--teal); letter-spacing: 1px; margin-bottom: 10px; }
+  .inside-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: #C0D8E8;
+    padding: 5px 0;
+  }
+  .inside-item::before {
+    content: '✓';
+    color: var(--teal);
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .btn-cta {
+    display: block;
+    width: 100%;
+    background: var(--teal);
+    color: var(--navy2);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    padding: 20px 32px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 8px 30px rgba(0,201,167,0.35);
+    letter-spacing: 0.3px;
+  }
+  .btn-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0,201,167,0.5);
+  }
+  .btn-cta small {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0.7;
+    margin-top: 4px;
+  }
+
+  .guarantee {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 24px;
+    padding: 16px 20px;
+    background: rgba(0,201,167,0.05);
+    border: 1px solid rgba(0,201,167,0.15);
+    border-radius: 12px;
+    max-width: 480px;
+    margin: 24px auto 0;
+  }
+  .guarantee-icon { font-size: 32px; }
+  .guarantee-text h4 { font-size: 14px; font-weight: 700; color: var(--white); }
+  .guarantee-text p { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+  /* ── FAQ ── */
+  .faq {
+    background: #0A0F1E;
+    padding: 70px 20px;
+  }
+  .faq h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(28px, 6vw, 44px);
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .faq-list { max-width: 660px; margin: 0 auto; }
+  .faq-item {
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 20px 0;
+  }
+  .faq-item h3 { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+  .faq-item p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  /* ── FINAL CTA ── */
+  .final-cta {
+    background: linear-gradient(135deg, #0D1B3E, #091226);
+    padding: 80px 20px;
+    text-align: center;
+    border-top: 1px solid rgba(0,201,167,0.2);
+  }
+  .final-cta h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(34px, 8vw, 60px);
+    margin-bottom: 12px;
+  }
+  .final-cta p { color: var(--muted); font-size: 15px; margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+  .btn-cta-gold {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy2);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    padding: 20px 48px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 8px 30px rgba(255,182,39,0.35);
+  }
+  .btn-cta-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(255,182,39,0.5);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #040810;
+    padding: 24px 20px;
+    text-align: center;
+    font-size: 12px;
+    color: #3A5A6A;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero > * { animation: fadeUp 0.7s ease both; }
+  .hero > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero > *:nth-child(3) { animation-delay: 0.35s; }
+  .hero > *:nth-child(4) { animation-delay: 0.5s; }
+
+  /* pulse on CTA */
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 8px 30px rgba(0,201,167,0.35); }
+    50%       { box-shadow: 0 8px 50px rgba(0,201,167,0.6); }
+  }
+  .btn-cta { animation: pulse 2.5s ease-in-out infinite; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">🎓 ENEM 2025 — Vagas nas melhores universidades esperam por você</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-tag">GUIA COMPLETO PARA CALOUROS</div>
+    <h1>
+      REDAÇÃO
+      <span class="line2">NOTA</span>
+      <span class="line3">1000</span>
+      NO ENEM
+    </h1>
+    <p class="hero-sub">
+      O método que transforma calouros em redatores de alta nota —
+      mesmo sem nunca ter feito o ENEM antes.
+    </p>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section class="pain">
+  <div class="container">
+    <h2>Você sabia que <span class="red">a maioria</span> perde pontos<br>por erros evitáveis?</h2>
+    <p>Esses são os erros que derrubam a nota de quem não tem o método certo:</p>
+    <div class="pain-grid">
+      <div class="pain-item">😰 A média de redação caiu para <strong>671 pontos</strong> no ENEM 2023</div>
+      <div class="pain-item">😰 Só <strong>0,1% dos candidatos</strong> conseguem nota 1000</div>
+      <div class="pain-item">😰 Proposta de intervenção incompleta pode custar <strong>até 40 pontos</strong></div>
+      <div class="pain-item">😰 Fuga de tema zera <strong>todas as competências</strong> de uma vez</div>
+      <div class="pain-item">😰 Conectivos errados derrubam a nota de <strong>Coesão para zero</strong></div>
+      <div class="pain-item">😰 Sem repertório, é impossível tirar nota máxima na <strong>Competência III</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="solution">
+  <div class="container">
+    <h2>Existe um <span>método comprovado.</span><br>E agora ele é seu.</h2>
+    <p>7 capítulos que cobrem tudo que você precisa saber para dominar a redação do ENEM</p>
+
+    <div class="book-wrap">
+      <div class="book">
+        <div class="book-label">📥 EBOOK DIGITAL — DOWNLOAD IMEDIATO</div>
+        <div class="book-title">REDAÇÃO <span>NOTA</span></div>
+        <div class="book-num">1000</div>
+        <div class="book-sub">O Guia Completo para Quem Vai Fazer pela Primeira Vez</div>
+        <div class="book-badges">
+          <span class="book-badge">7 capítulos</span>
+          <span class="book-badge">30 dias de treino</span>
+          <span class="book-badge">Redações comentadas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTERS -->
+<section class="chapters">
+  <div class="container">
+    <h2>O que você vai aprender</h2>
+    <p class="sub">Cada capítulo foi pensado para resolver uma dor específica do calouro</p>
+    <div class="chapter-list">
+      <div class="chapter-item">
+        <div class="ch-num">01</div>
+        <div class="ch-info">
+          <h3>Como a Redação do ENEM é Corrigida</h3>
+          <p>Os 5 critérios de avaliação explicados de forma simples. Saiba exatamente o que o corretor quer ver em cada linha do seu texto.</p>
+        </div>
+      </div>
+      <div class="chapter-item">
+        <div class="ch-num">02</div>
+        <div class="ch-info">
+          <h3>Entendendo o Tema</h3>
+          <p>Como interpretar a proposta e nunca fugir do tema — o erro mais fatal que zera todas as competências de uma vez.</p>
+        </div>
+      </div>
+      <div class="chapter-item">
+        <div class="ch-num">03</div>
+        <div class="ch-info">
+          <h3>A Estrutura Perfeita</h3>
+          <p>Introdução, desenvolvimento e conclusão com proposta de intervenção completa. Os 5 elementos obrigatórios que garantem nota máxima.</p>
+        </div>
+      </div>
+      <div class="chapter-item">
+        <div class="ch-num">04</div>
+        <div class="ch-info">
+          <h3>Repertório Sociocultural</h3>
+          <p>Como usar dados, citações e exemplos poderosos mesmo sem ter lido muito. Inclui repertório curinga para qualquer tema.</p>
+        </div>
+      </div>
+      <div class="chapter-item">
+        <div class="ch-num">05</div>
+        <div class="ch-info">
+          <h3>Os Conectivos que Fazem a Diferença</h3>
+          <p>Coesão e coerência na prática com tabela completa de conectivos e exemplos de parágrafos com e sem o método.</p>
+        </div>
+      </div>
+      <div class="chapter-item">
+        <div class="ch-num">06</div>
+        <div class="ch-info">
+          <h3>Redações Nota 1000 Comentadas</h3>
+          <p>Análise de redações reais com anotações detalhadas do que cada parte fez de certo. Aprenda vendo quem já chegou lá.</p>
+        </div>
+      </div>
+      <div class="chapter-item">
+        <div class="ch-num">07</div>
+        <div class="ch-info">
+          <h3>Plano de Treino em 30 Dias</h3>
+          <p>Cronograma prático semana a semana para você chegar ao ENEM com confiança e consistência.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="proof">
+  <div class="container">
+    <h2>Quem seguiu o método, <span>tirou nota alta</span></h2>
+    <div class="testimonials">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Finalmente entendi como funciona a correção. A parte dos conectivos mudou completamente minha escrita."</p>
+        <div class="author">— Marina S., aprovada em Direito na UFMG</div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Estava com medo de fugir do tema. Depois de ler o capítulo 2, nunca mais errei isso. Tirei 920 na redação."</p>
+        <div class="author">— João P., 1º ano do ENEM</div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"O plano de 30 dias foi o que mais me ajudou. Antes eu treinava aleatório. Agora tenho método."</p>
+        <div class="author">— Camila R., aprovada em Medicina</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing">
+  <div class="container">
+    <h2>Garanta seu acesso <span class="teal">agora</span></h2>
+    <p>Oferta por tempo limitado — sem mensalidade, sem renovação automática</p>
+
+    <div class="price-box">
+      <div class="price-old">De R$ 97,00</div>
+      <div class="price-label">Por apenas</div>
+      <div class="price-main">R$27</div>
+      <div class="price-installment">Pagamento único • Acesso vitalício</div>
+
+      <div class="whats-inside">
+        <h4>O QUE VOCÊ RECEBE</h4>
+        <div class="inside-item">Ebook completo — 7 capítulos em PDF</div>
+        <div class="inside-item">Tabela de conectivos para colar no caderno</div>
+        <div class="inside-item">Plano de treino de 30 dias</div>
+        <div class="inside-item">Redações nota 1000 comentadas</div>
+        <div class="inside-item">Download imediato após o pagamento</div>
+      </div>
+
+      <a href="https://pay.cakto.com.br/ng6m7zg_886921" class="btn-cta">
+        QUERO MINHA NOTA 1000 AGORA
+        <small>Clique e pague com Pix em segundos →</small>
+      </a>
+    </div>
+
+    <div class="guarantee">
+      <div class="guarantee-icon">🛡️</div>
+      <div class="guarantee-text">
+        <h4>Garantia de 7 dias</h4>
+        <p>Se você não ficar satisfeito por qualquer motivo, devolvemos 100% do seu dinheiro. Sem perguntas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <h2>Perguntas Frequentes</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Como recebo o ebook após a compra?</h3>
+        <p>Imediatamente! Logo após o pagamento via Pix, você recebe o link de download no e-mail cadastrado. Acesso em segundos.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Funciona para quem nunca estudou redação?</h3>
+        <p>Sim! O guia foi criado especialmente para calouros que vão fazer o ENEM pela primeira vez. Tudo explicado do zero, sem assumir conhecimento prévio.</p>
+      </div>
+      <div class="faq-item">
+        <h3>É um curso em vídeo ou ebook?</h3>
+        <p>É um ebook em PDF, completo e objetivo. Você lê no celular, tablet ou computador, no seu ritmo, quando quiser.</p>
+      </div>
+      <div class="faq-item">
+        <h3>E se eu não gostar?</h3>
+        <p>Você tem 7 dias de garantia total. Se não gostar por qualquer motivo, é só pedir o reembolso que devolvemos 100% do valor.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Funciona para o ENEM 2025?</h3>
+        <p>Sim! O conteúdo é baseado nos critérios oficiais do INEP, que são os mesmos há anos. Totalmente atualizado para o ENEM 2025.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container">
+    <h2>Sua nota 1000 começa<br><span class="teal">com uma decisão.</span></h2>
+    <p>Por R$27 você tem o mapa completo. O ENEM está chegando — cada dia conta.</p>
+    <a href="https://pay.cakto.com.br/ng6m7zg_886921" class="btn-cta-gold">
+      QUERO TIRAR NOTA 1000 →
+    </a>
+    <p style="margin-top:16px; font-size:12px; color:#3A5A6A;">🛡️ Garantia de 7 dias &nbsp;•&nbsp; 📥 Download imediato &nbsp;•&nbsp; 💳 Pix</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Redação Nota 1000 no ENEM — Produto Digital</p>
+  <p style="margin-top:6px;">Este produto é um ebook digital e não possui vínculo com o INEP ou MEC.</p>
+</footer>
+
+</body>
+</html>
