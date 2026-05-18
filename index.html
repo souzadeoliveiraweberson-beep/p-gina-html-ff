@@ -3,721 +3,1751 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Redação Nota 1000 no ENEM — Guia Completo para Calouros</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet"/>
+<title>Redação Nota 1000 — ENEM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300;1,600&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+
 <style>
-  :root {
-    --navy:   #0D1B3E;
-    --navy2:  #091226;
-    --teal:   #00C9A7;
-    --teal2:  #00A88A;
-    --gold:   #FFB627;
-    --red:    #E24B4A;
-    --white:  #FFFFFF;
-    --muted:  #8DB4CC;
-    --card:   #0F2A5C;
-  }
+/* ═══════════════════════════════════════════
+   TOKENS — sistema visual próprio
+   Paleta: creme sujo + preto grafite + verde caça
+   Não existe no Tailwind. Não existe no Framer.
+═══════════════════════════════════════════ */
+:root {
+  --ink:        #0e0e0c;
+  --ink-2:      #3d3d38;
+  --ink-3:      #888880;
+  --cream:      #f2ede4;
+  --cream-2:    #e8e1d4;
+  --cream-3:    #d9d0c0;
+  --green:      #1e5c3a;
+  --green-2:    #2d7a50;
+  --green-hi:   #3a9962;
+  --gold:       #c9920a;
+  --red:        #b83232;
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-mono:    'DM Mono', 'Courier New', monospace;
+  --font-body:    'Inter', system-ui, sans-serif;
 
-  html { scroll-behavior: smooth; }
+  --ease-cut:    cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out:    cubic-bezier(0.25, 1, 0.5, 1);
+}
 
-  body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background: var(--navy2);
-    color: var(--white);
-    overflow-x: hidden;
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 
-  /* ── UTILITIES ── */
-  .container { max-width: 760px; margin: 0 auto; padding: 0 20px; }
-  .teal  { color: var(--teal); }
-  .gold  { color: var(--gold); }
-  .red   { color: var(--red);  }
-  .muted { color: var(--muted);}
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+}
 
-  /* ── TOP BAR ── */
-  .topbar {
-    background: var(--teal);
-    text-align: center;
-    padding: 10px 20px;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--navy);
-    letter-spacing: 1px;
-  }
+/* ═══════════════════════════════════════════
+   TICKER — faixa editorial horizontal
+   Assinatura visual #1: elemento que não existe em template nenhum
+═══════════════════════════════════════════ */
+.ticker-wrap {
+  background: var(--ink);
+  overflow: hidden;
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker 28s linear infinite;
+}
+.ticker-item {
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.12em;
+  padding: 0 48px;
+}
+.ticker-item strong {
+  color: var(--green-hi);
+  font-weight: 500;
+}
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
 
-  /* ── HERO ── */
+/* ═══════════════════════════════════════════
+   NAV — minimalista, colado à esquerda
+═══════════════════════════════════════════ */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px clamp(1.5rem, 6vw, 7rem);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: rgba(242,237,228,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 300ms var(--ease-out);
+}
+nav.scrolled { border-color: var(--cream-3); }
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.nav-logo em {
+  font-style: italic;
+  color: var(--green);
+}
+.nav-right { display: flex; align-items: center; gap: 28px; }
+.nav-price {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-3);
+  letter-spacing: 0.04em;
+}
+.nav-btn {
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 4px;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: background 213ms var(--ease-cut),
+              transform 213ms var(--ease-cut);
+}
+.nav-btn:hover {
+  background: var(--green);
+  transform: translateY(-1px);
+}
+
+/* ═══════════════════════════════════════════
+   HERO — assinatura visual #1
+   "1000" cortado pela viewport, editorial agressivo
+   Layout propositalmente assimétrico 60/40
+═══════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Coluna esquerda — texto */
+.hero-left {
+  padding: clamp(60px, 10vh, 120px) clamp(1.5rem, 6vw, 7rem) clamp(60px, 10vh, 120px) clamp(1.5rem, 6vw, 7rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 40px;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 32px; height: 1px;
+  background: var(--ink-3);
+}
+.hero-eyebrow span {
+  color: var(--green);
+  font-weight: 500;
+}
+
+.hero-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 7vw, 88px);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  margin-bottom: 36px;
+  color: var(--ink);
+}
+.hero-h1 em {
+  font-style: italic;
+  font-weight: 600;
+  color: var(--green);
+  display: block;
+}
+.hero-h1 .accent-line {
+  /* linha com mix de pesos — tratamento tipográfico único */
+  font-weight: 700;
+  display: block;
+  position: relative;
+}
+
+.hero-body {
+  font-size: 16px;
+  line-height: 1.72;
+  color: var(--ink-2);
+  max-width: 44ch;
+  margin-bottom: 52px;
+}
+.hero-body strong { color: var(--ink); font-weight: 500; }
+
+.hero-cta-group {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.btn-main {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--green);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 17px 34px;
+  border-radius: 4px;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  position: relative;
+  overflow: hidden;
+  transition: background 237ms var(--ease-cut),
+              transform 237ms var(--ease-cut);
+}
+.btn-main::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.btn-main:hover {
+  background: var(--green-2);
+  transform: translateY(-2px);
+}
+.btn-main .arrow {
+  font-size: 18px;
+  transition: transform 237ms var(--ease-spring);
+}
+.btn-main:hover .arrow { transform: translateX(4px); }
+
+.hero-micro {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--ink-3);
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+}
+.hero-micro .sep { color: var(--cream-3); }
+
+/* Coluna direita — número monumental cortado */
+.hero-right {
+  position: relative;
+  background: var(--ink);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+/* O número 1000 como elemento arquitetônico — sai da tela intencionalmente */
+.hero-num {
+  font-family: var(--font-display);
+  font-size: clamp(200px, 28vw, 380px);
+  font-weight: 700;
+  line-height: 0.78;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255,255,255,0.15);
+  position: absolute;
+  bottom: -20px;
+  left: -30px;
+  white-space: nowrap;
+  user-select: none;
+  letter-spacing: -0.05em;
+  pointer-events: none;
+}
+
+/* Conteúdo da direita — flutuando sobre o número */
+.hero-right-content {
+  position: relative;
+  z-index: 2;
+  padding: clamp(40px, 6vw, 80px) clamp(2rem, 4vw, 52px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.hero-tag {
+  align-self: flex-start;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 2px;
+}
+
+/* Competências — lista técnica no dark panel */
+.comp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: auto;
+  margin-bottom: 0;
+}
+.comp-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.comp-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.06); }
+.comp-num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--green-hi);
+  letter-spacing: 0.08em;
+  width: 24px;
+  flex-shrink: 0;
+}
+.comp-bar-wrap {
+  flex: 1;
+  height: 2px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.comp-bar {
+  height: 100%;
+  background: var(--green-hi);
+  transform-origin: left;
+  animation: compBar 1.4s var(--ease-cut) both;
+}
+.comp-bar:nth-child(1) { animation-delay: 0.2s; }
+@keyframes compBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+.comp-name {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.04em;
+  width: 120px;
+  text-align: right;
+}
+.comp-score {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: -0.02em;
+  width: 40px;
+  text-align: right;
+}
+
+.comp-total {
+  padding: 20px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.comp-total-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.comp-total-num {
+  font-family: var(--font-display);
+  font-size: 52px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+/* ═══════════════════════════════════════════
+   SEÇÃO EDITORIAL — frase de ruptura
+   Quebra total de ritmo após o hero
+═══════════════════════════════════════════ */
+.ruptura {
+  background: var(--green);
+  padding: 0 clamp(1.5rem, 6vw, 7rem);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  min-height: 140px;
+}
+.ruptura-text {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 54px);
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  padding: 36px 0;
+  max-width: 760px;
+}
+.ruptura-text strong {
+  font-style: normal;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* número decorativo saindo da seção */
+.ruptura-num {
+  position: absolute;
+  right: clamp(2rem, 6vw, 7rem);
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-size: clamp(80px, 14vw, 180px);
+  font-weight: 700;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.12);
+  letter-spacing: -0.04em;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════
+   DOR — layout assimétrico jornal
+   Assinatura visual #2: números enormes sangrando
+═══════════════════════════════════════════ */
+.dor-section {
+  padding: clamp(80px, 12vw, 140px) clamp(1.5rem, 6vw, 7rem);
+  position: relative;
+}
+
+.dor-header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 clamp(32px, 5vw, 72px);
+  align-items: start;
+  margin-bottom: clamp(56px, 8vw, 96px);
+}
+
+/* Número de seção enorme — sai do grid intencionalmente */
+.section-num-giant {
+  font-family: var(--font-display);
+  font-size: clamp(80px, 14vw, 160px);
+  font-weight: 700;
+  line-height: 0.8;
+  color: var(--cream-2);
+  letter-spacing: -0.04em;
+  user-select: none;
+  margin-top: -16px;
+  /* sangra levemente para cima — quebra de grid intencional */
+}
+
+.section-label-sm {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-label-sm::before {
+  content: '';
+  width: 20px; height: 1px;
+  background: currentColor;
+}
+
+.section-h {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 62px);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+.section-h em { font-style: italic; color: var(--green); font-weight: 300; }
+
+.section-sub {
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--ink-2);
+  max-width: 52ch;
+  margin-top: 16px;
+}
+
+/* Grid de dores — 3 colunas editoriais com dividers */
+.dor-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 2px solid var(--ink);
+}
+.dor-item {
+  padding: 32px 28px 32px 0;
+  border-right: 1px solid var(--cream-3);
+  position: relative;
+}
+.dor-item:last-child { border-right: none; }
+.dor-item + .dor-item { padding-left: 28px; }
+
+/* Número de dor enorme, decorativo, saindo pela lateral */
+.dor-count {
+  font-family: var(--font-display);
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--cream-2);
+  letter-spacing: -0.04em;
+  margin-bottom: 16px;
+  display: block;
+  transition: color 300ms var(--ease-out);
+}
+.dor-item:hover .dor-count { color: var(--red); }
+
+.dor-hl {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.35;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+.dor-hl mark {
+  background: none;
+  color: var(--red);
+  font-style: italic;
+}
+.dor-body {
+  font-size: 13px;
+  color: var(--ink-3);
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════
+   CAPÍTULOS — layout diagonal 65/35
+   Assinatura visual #3: número domina, texto flutua
+═══════════════════════════════════════════ */
+.chapters-section {
+  background: var(--ink);
+  padding: clamp(80px, 12vw, 140px) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* linha decorativa inclinada atrás dos capítulos */
+.chapters-section::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 52%;
+  width: 1px;
+  background: rgba(255,255,255,0.04);
+  transform: rotate(2deg);
+  transform-origin: top;
+}
+
+.chapters-inner {
+  padding: 0 clamp(1.5rem, 6vw, 7rem);
+}
+
+.chapters-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 64px;
+  gap: 40px;
+}
+.chapters-header .section-h { color: var(--cream); }
+.chapters-header .section-label-sm { color: rgba(255,255,255,0.3); }
+
+.chapters-header-right {
+  font-size: 13px;
+  color: rgba(255,255,255,0.3);
+  line-height: 1.6;
+  max-width: 36ch;
+  text-align: right;
+}
+
+.chapter-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 2fr;
+  gap: 0 clamp(24px, 4vw, 56px);
+  padding: 28px 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  align-items: start;
+  cursor: default;
+  position: relative;
+  transition: background 237ms var(--ease-out);
+}
+.chapter-row:last-child { border-bottom: 1px solid rgba(255,255,255,0.06); }
+.chapter-row::after {
+  content: '';
+  position: absolute;
+  inset: 0 -clamp(1.5rem, 6vw, 7rem);
+  background: rgba(255,255,255,0.015);
+  opacity: 0;
+  transition: opacity 237ms var(--ease-out);
+  pointer-events: none;
+}
+.chapter-row:hover::after { opacity: 1; }
+
+.ch-number {
+  font-family: var(--font-display);
+  font-size: 56px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.1);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  transition: color 237ms var(--ease-out);
+  padding-top: 2px;
+}
+.chapter-row:hover .ch-number { color: var(--green-hi); }
+
+.ch-meta {
+  padding-top: 6px;
+}
+.ch-tag {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green-hi);
+  margin-bottom: 10px;
+}
+.ch-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--cream);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.ch-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,0.35);
+  line-height: 1.65;
+  padding-top: 8px;
+}
+
+/* ═══════════════════════════════════════════
+   BENEFÍCIOS — lista com linha vertical
+═══════════════════════════════════════════ */
+.beneficios-section {
+  padding: clamp(80px, 12vw, 140px) clamp(1.5rem, 6vw, 7rem);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(48px, 8vw, 120px);
+  align-items: start;
+}
+
+.ben-left { position: sticky; top: 120px; }
+
+.ben-right { padding-top: 8px; }
+
+.ben-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--cream-3);
+}
+.ben-item {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 16px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--cream-3);
+  transition: border-color 237ms var(--ease-out);
+}
+.ben-item:hover { border-color: var(--green); }
+
+.ben-check {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--cream-3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  color: var(--green);
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: background 237ms var(--ease-out),
+              border-color 237ms var(--ease-out);
+}
+.ben-item:hover .ben-check {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff;
+}
+
+.ben-text {
+  font-size: 15px;
+  color: var(--ink-2);
+  line-height: 1.65;
+}
+.ben-text strong { color: var(--ink); font-weight: 500; }
+
+/* ═══════════════════════════════════════════
+   PROVA SOCIAL — cards sem moldura, só sombra de texto
+═══════════════════════════════════════════ */
+.proof-section {
+  background: var(--cream-2);
+  padding: clamp(80px, 12vw, 140px) clamp(1.5rem, 6vw, 7rem);
+  border-top: 1px solid var(--cream-3);
+}
+.proof-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 64px;
+  gap: 40px;
+}
+
+.depo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--cream-3);
+}
+.depo {
+  background: var(--cream-2);
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: background 237ms var(--ease-out);
+}
+.depo:hover { background: var(--cream); }
+
+.depo-stars {
+  color: var(--gold);
+  font-size: 12px;
+  letter-spacing: 3px;
+}
+
+.depo-quote {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.55;
+  flex: 1;
+}
+.depo-quote::before {
+  content: '"';
+  font-size: 48px;
+  line-height: 0;
+  display: block;
+  height: 32px;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+
+.depo-author {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  letter-spacing: 0.06em;
+}
+.depo-author strong {
+  display: block;
+  color: var(--ink-2);
+  font-weight: 500;
+  margin-bottom: 2px;
+  font-size: 12px;
+}
+
+/* ═══════════════════════════════════════════
+   OFERTA — preço flutuante sem container
+   Assinatura visual #4: preço como cartaz tipográfico
+═══════════════════════════════════════════ */
+.oferta-section {
+  padding: clamp(80px, 12vw, 140px) clamp(1.5rem, 6vw, 7rem);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(48px, 8vw, 100px);
+  align-items: center;
+  position: relative;
+}
+
+/* divisória vertical assimétrica */
+.oferta-section::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 15%;
+  bottom: 15%;
+  width: 1px;
+  background: var(--cream-3);
+  transform: translateX(-50%);
+}
+
+.oferta-left { position: relative; }
+
+/* Preço como elemento tipográfico livre — sem card */
+.preco-wrap {
+  position: relative;
+  margin-bottom: 40px;
+}
+.preco-old {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink-3);
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.preco-old s { text-decoration: line-through; }
+.preco-old::after {
+  content: 'HOJE';
+  font-size: 9px;
+  background: var(--red);
+  color: #fff;
+  padding: 2px 7px;
+  border-radius: 2px;
+  letter-spacing: 0.1em;
+}
+
+.preco-valor {
+  font-family: var(--font-display);
+  font-size: clamp(80px, 12vw, 140px);
+  font-weight: 700;
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.preco-cifrao {
+  font-size: 0.38em;
+  color: var(--ink-3);
+  font-weight: 400;
+  margin-top: 0.18em;
+  font-family: var(--font-body);
+}
+
+.preco-note {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  letter-spacing: 0.08em;
+  margin-top: 16px;
+}
+
+/* includes — lista limpa */
+.includes {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--cream-3);
+}
+.include-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--cream-3);
+  font-size: 14px;
+  color: var(--ink-2);
+  gap: 16px;
+}
+.include-name { display: flex; align-items: center; gap: 12px; }
+.include-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  flex-shrink: 0;
+}
+.include-val {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  text-decoration: line-through;
+}
+
+/* direita — CTA block */
+.oferta-right {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.oferta-cta-block {
+  background: var(--ink);
+  padding: clamp(32px, 5vw, 52px);
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+}
+.oferta-cta-block::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--green), var(--green-hi));
+}
+
+.oferta-cta-title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--cream);
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+.oferta-cta-title strong { font-style: normal; font-weight: 700; }
+
+.btn-comprar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--green);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 20px 28px;
+  border-radius: 4px;
+  text-decoration: none;
+  text-align: center;
+  letter-spacing: -0.01em;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 16px;
+  transition: background 237ms var(--ease-cut),
+              transform 237ms var(--ease-cut);
+}
+.btn-comprar:hover {
+  background: var(--green-2);
+  transform: translateY(-2px);
+}
+.btn-comprar small {
+  font-size: 11px;
+  font-weight: 400;
+  opacity: 0.7;
+  margin-top: 4px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+}
+
+.garantia {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 4px;
+}
+.garantia-icon { font-size: 20px; }
+.garantia-texto { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.5; }
+.garantia-texto strong { color: rgba(255,255,255,0.75); display: block; margin-bottom: 2px; }
+
+/* ═══════════════════════════════════════════
+   OBJEÇÕES — perguntas honestas, sem eufemismo
+═══════════════════════════════════════════ */
+.obj-section {
+  background: var(--cream-2);
+  border-top: 1px solid var(--cream-3);
+  padding: clamp(80px, 12vw, 140px) clamp(1.5rem, 6vw, 7rem);
+}
+.obj-inner {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: clamp(48px, 8vw, 100px);
+  align-items: start;
+}
+.obj-left { position: sticky; top: 120px; }
+
+.obj-list { display: flex; flex-direction: column; }
+.obj-item {
+  border-top: 1px solid var(--cream-3);
+  padding: 28px 0;
+}
+.obj-item:last-child { border-bottom: 1px solid var(--cream-3); }
+.obj-q {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--ink);
+  margin-bottom: 12px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+.obj-a {
+  font-size: 14.5px;
+  color: var(--ink-2);
+  line-height: 1.7;
+}
+.obj-a strong { color: var(--ink); font-weight: 500; }
+
+/* ═══════════════════════════════════════════
+   FAQ — accordion clean
+═══════════════════════════════════════════ */
+.faq-section {
+  padding: clamp(80px, 12vw, 140px) clamp(1.5rem, 6vw, 7rem);
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-top: 1px solid var(--cream-3);
+  cursor: pointer;
+}
+.faq-item:last-child { border-bottom: 1px solid var(--cream-3); }
+.faq-q {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+.faq-q .indicator {
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--ink-3);
+  flex-shrink: 0;
+  transition: transform 313ms var(--ease-cut), color 200ms;
+  line-height: 1;
+}
+.faq-item.open .faq-q .indicator {
+  transform: rotate(45deg);
+  color: var(--green);
+}
+.faq-a {
+  font-size: 14.5px;
+  color: var(--ink-2);
+  line-height: 1.72;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 400ms var(--ease-cut),
+              padding-bottom 300ms var(--ease-out);
+}
+.faq-item.open .faq-a {
+  max-height: 300px;
+  padding-bottom: 22px;
+}
+
+/* ═══════════════════════════════════════════
+   CTA FINAL — ruptura total de layout
+   Tipografia enorme ocupando a tela
+═══════════════════════════════════════════ */
+.cta-final {
+  background: var(--ink);
+  padding: clamp(80px, 14vw, 160px) clamp(1.5rem, 6vw, 7rem);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Texto enorme como fundo — sai pelos lados */
+.cta-bg-text {
+  position: absolute;
+  bottom: -40px;
+  left: -20px;
+  font-family: var(--font-display);
+  font-size: clamp(100px, 18vw, 240px);
+  font-weight: 700;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.04);
+  white-space: nowrap;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+
+.cta-inner { position: relative; z-index: 2; }
+
+.cta-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--green-hi);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+.cta-headline {
+  font-family: var(--font-display);
+  font-size: clamp(42px, 7vw, 96px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--cream);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  max-width: 16ch;
+  margin-bottom: 48px;
+}
+.cta-headline strong {
+  font-style: normal;
+  font-weight: 700;
+  color: #fff;
+  display: block;
+}
+
+.cta-bottom {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.cta-trust {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.06em;
+}
+.trust-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--green-hi);
+}
+
+/* ═══════════════════════════════════════════
+   P.S. — bloco à parte, personalidade humana
+═══════════════════════════════════════════ */
+.ps-section {
+  background: var(--cream-2);
+  border-top: 2px solid var(--ink);
+  padding: clamp(40px, 6vw, 72px) clamp(1.5rem, 6vw, 7rem);
+}
+.ps-inner {
+  max-width: 720px;
+}
+.ps-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--ink-3);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.ps-text {
+  font-family: var(--font-display);
+  font-size: clamp(17px, 2.2vw, 22px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--ink-2);
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+}
+.ps-text strong { font-style: normal; font-weight: 600; color: var(--ink); }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer {
+  background: var(--ink);
+  padding: 28px clamp(1.5rem, 6vw, 7rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 17px;
+  color: rgba(255,255,255,0.3);
+}
+.footer-logo em { color: var(--green-hi); font-style: italic; }
+.footer-legal {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: rgba(255,255,255,0.2);
+  text-align: right;
+  line-height: 1.7;
+  letter-spacing: 0.03em;
+}
+
+/* ═══════════════════════════════════════════
+   ANIMAÇÕES DE ENTRADA
+═══════════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 613ms var(--ease-out),
+              transform 613ms var(--ease-out);
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+.d1 { transition-delay: 80ms; }
+.d2 { transition-delay: 160ms; }
+.d3 { transition-delay: 240ms; }
+.d4 { transition-delay: 320ms; }
+.d5 { transition-delay: 400ms; }
+.d6 { transition-delay: 480ms; }
+
+/* Hero entra animado */
+.hero-left > * { animation: fadeUp 0.7s var(--ease-out) both; }
+.hero-eyebrow { animation-delay: 0.05s; }
+.hero-h1      { animation-delay: 0.12s; }
+.hero-body    { animation-delay: 0.22s; }
+.hero-cta-group { animation-delay: 0.32s; }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 960px) {
   .hero {
-    background: linear-gradient(160deg, #0D1B3E 0%, #091226 100%);
-    padding: 70px 20px 60px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+    grid-template-columns: 1fr;
+    min-height: auto;
   }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -100px; right: -100px;
-    width: 400px; height: 400px;
-    border-radius: 50%;
-    background: var(--teal);
-    opacity: 0.04;
+  .hero-right {
+    height: 340px;
+    min-height: 0;
   }
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: -80px; left: -80px;
-    width: 300px; height: 300px;
-    border-radius: 50%;
-    background: var(--gold);
-    opacity: 0.04;
-  }
+  .hero-num { font-size: 260px; bottom: -40px; }
 
-  .hero-tag {
-    display: inline-block;
-    background: rgba(0,201,167,0.12);
-    border: 1px solid rgba(0,201,167,0.3);
-    color: var(--teal);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    padding: 6px 18px;
-    border-radius: 20px;
-    margin-bottom: 28px;
+  .dor-grid { grid-template-columns: 1fr; border-top: none; }
+  .dor-item {
+    border-right: none;
+    border-top: 1px solid var(--cream-3);
+    padding: 28px 0 !important;
   }
+  .dor-header { grid-template-columns: 1fr; }
+  .section-num-giant { display: none; }
 
-  .hero h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(52px, 12vw, 96px);
-    line-height: 0.95;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-  }
-  .hero h1 .line2 { color: var(--teal); display: block; }
-  .hero h1 .line3 { color: var(--gold); display: block; font-size: clamp(72px, 18vw, 140px); }
+  .chapters-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .chapters-header-right { text-align: left; }
+  .chapter-row { grid-template-columns: 60px 1fr; }
+  .ch-desc { display: none; }
 
-  .hero-sub {
-    font-size: clamp(15px, 3vw, 19px);
-    color: var(--muted);
-    margin: 18px auto 0;
-    max-width: 520px;
-    line-height: 1.6;
-  }
+  .beneficios-section { grid-template-columns: 1fr; }
+  .ben-left { position: static; }
 
-  /* ── PAIN SECTION ── */
-  .pain {
-    background: #0A0F1E;
-    padding: 60px 20px;
-    text-align: center;
-    border-top: 2px solid var(--red);
-  }
-  .pain h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(32px, 7vw, 52px);
-    margin-bottom: 10px;
-    color: var(--white);
-  }
-  .pain p { color: var(--muted); font-size: 15px; margin-bottom: 32px; }
+  .proof-section .proof-header { flex-direction: column; gap: 16px; }
+  .depo-grid { grid-template-columns: 1fr; }
 
-  .pain-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 14px;
-    max-width: 760px;
-    margin: 0 auto;
+  .oferta-section {
+    grid-template-columns: 1fr;
+    gap: 48px;
   }
-  .pain-item {
-    background: #1A0808;
-    border: 1px solid rgba(226,75,74,0.25);
-    border-left: 3px solid var(--red);
-    border-radius: 10px;
-    padding: 16px 18px;
-    text-align: left;
-    font-size: 14px;
-    color: #F09595;
-    line-height: 1.5;
-  }
+  .oferta-section::before { display: none; }
 
-  /* ── SOLUTION ── */
-  .solution {
-    padding: 70px 20px;
-    text-align: center;
-    background: linear-gradient(180deg, #091226 0%, #0D1B3E 100%);
-  }
-  .solution h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(34px, 7vw, 54px);
-    color: var(--white);
-    margin-bottom: 6px;
-  }
-  .solution h2 span { color: var(--teal); }
-  .solution p { color: var(--muted); font-size: 15px; margin-bottom: 40px; }
+  .obj-inner { grid-template-columns: 1fr; }
+  .obj-left { position: static; }
 
-  /* Book mockup */
-  .book-wrap {
-    display: flex;
-    justify-content: center;
-    margin: 36px 0;
-  }
-  .book {
-    background: linear-gradient(135deg, #0F2A5C, #162D6A);
-    border: 1px solid rgba(0,201,167,0.3);
-    border-radius: 12px;
-    padding: 32px 40px;
-    max-width: 320px;
-    width: 100%;
-    position: relative;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 40px rgba(0,201,167,0.08);
-  }
-  .book::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 4px;
-    background: var(--teal);
-    border-radius: 12px 12px 0 0;
-  }
-  .book-label {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: var(--muted);
-    margin-bottom: 16px;
-  }
-  .book-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px;
-    line-height: 1;
-    color: var(--white);
-    margin-bottom: 4px;
-  }
-  .book-title span { color: var(--teal); display: block; }
-  .book-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 64px;
-    color: var(--gold);
-    line-height: 1;
-  }
-  .book-sub {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px solid rgba(255,255,255,0.08);
-  }
-  .book-badges {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    margin-top: 10px;
-    flex-wrap: wrap;
-  }
-  .book-badge {
-    background: rgba(0,201,167,0.1);
-    border: 1px solid rgba(0,201,167,0.2);
-    color: var(--teal);
-    font-size: 10px;
-    font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 20px;
-  }
+  footer { flex-direction: column; }
+  .footer-legal { text-align: left; }
+}
 
-  /* ── CHAPTERS ── */
-  .chapters {
-    background: #070E1F;
-    padding: 70px 20px;
-  }
-  .chapters h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(32px, 7vw, 50px);
-    text-align: center;
-    margin-bottom: 8px;
-  }
-  .chapters .sub {
-    text-align: center;
-    color: var(--muted);
-    font-size: 14px;
-    margin-bottom: 36px;
-  }
-
-  .chapter-list { max-width: 660px; margin: 0 auto; }
-  .chapter-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 18px;
-    padding: 18px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-  }
-  .chapter-item:last-child { border-bottom: none; }
-  .ch-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    color: var(--teal);
-    min-width: 36px;
-    line-height: 1;
-  }
-  .ch-info h3 {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 4px;
-  }
-  .ch-info p { font-size: 13px; color: var(--muted); line-height: 1.5; }
-
-  /* ── PROOF ── */
-  .proof {
-    background: linear-gradient(180deg, #0D1B3E, #091226);
-    padding: 70px 20px;
-    text-align: center;
-  }
-  .proof h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(30px, 6vw, 48px);
-    margin-bottom: 36px;
-  }
-  .proof h2 span { color: var(--gold); }
-
-  .testimonials {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
-    max-width: 760px;
-    margin: 0 auto 40px;
-  }
-  .testimonial {
-    background: var(--card);
-    border: 1px solid rgba(0,201,167,0.15);
-    border-radius: 12px;
-    padding: 22px 20px;
-    text-align: left;
-  }
-  .stars { color: var(--gold); font-size: 13px; margin-bottom: 10px; }
-  .testimonial p { font-size: 13px; color: #C0D8E8; line-height: 1.6; margin-bottom: 12px; font-style: italic; }
-  .testimonial .author { font-size: 12px; color: var(--muted); font-weight: 700; }
-
-  /* ── PRICE / CTA ── */
-  .pricing {
-    background: #070E1F;
-    padding: 70px 20px;
-    text-align: center;
-    border-top: 2px solid var(--teal);
-  }
-  .pricing h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(30px, 6vw, 48px);
-    margin-bottom: 6px;
-  }
-  .pricing p { color: var(--muted); font-size: 14px; margin-bottom: 36px; }
-
-  .price-box {
-    background: linear-gradient(135deg, #0F2A5C, #162D6A);
-    border: 1px solid rgba(0,201,167,0.3);
-    border-radius: 20px;
-    padding: 44px 32px;
-    max-width: 480px;
-    margin: 0 auto 32px;
-    position: relative;
-    overflow: hidden;
-  }
-  .price-box::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--teal), var(--gold));
-  }
-
-  .price-old {
-    font-size: 16px;
-    color: #5A7A8A;
-    text-decoration: line-through;
-    margin-bottom: 4px;
-  }
-  .price-label { font-size: 14px; color: var(--muted); margin-bottom: 8px; }
-  .price-main {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(72px, 16vw, 110px);
-    color: var(--gold);
-    line-height: 1;
-    letter-spacing: -2px;
-  }
-  .price-installment { font-size: 13px; color: var(--muted); margin-top: 4px; margin-bottom: 24px; }
-
-  .whats-inside {
-    background: rgba(0,0,0,0.2);
-    border-radius: 10px;
-    padding: 16px 20px;
-    margin-bottom: 24px;
-    text-align: left;
-  }
-  .whats-inside h4 { font-size: 12px; font-weight: 700; color: var(--teal); letter-spacing: 1px; margin-bottom: 10px; }
-  .inside-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 13px;
-    color: #C0D8E8;
-    padding: 5px 0;
-  }
-  .inside-item::before {
-    content: '✓';
-    color: var(--teal);
-    font-weight: 700;
-    font-size: 14px;
-  }
-
-  .btn-cta {
-    display: block;
-    width: 100%;
-    background: var(--teal);
-    color: var(--navy2);
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 18px;
-    font-weight: 800;
-    padding: 20px 32px;
-    border-radius: 50px;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 8px 30px rgba(0,201,167,0.35);
-    letter-spacing: 0.3px;
-  }
-  .btn-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(0,201,167,0.5);
-  }
-  .btn-cta small {
-    display: block;
-    font-size: 12px;
-    font-weight: 600;
-    opacity: 0.7;
-    margin-top: 4px;
-  }
-
-  .guarantee {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 24px;
-    padding: 16px 20px;
-    background: rgba(0,201,167,0.05);
-    border: 1px solid rgba(0,201,167,0.15);
-    border-radius: 12px;
-    max-width: 480px;
-    margin: 24px auto 0;
-  }
-  .guarantee-icon { font-size: 32px; }
-  .guarantee-text h4 { font-size: 14px; font-weight: 700; color: var(--white); }
-  .guarantee-text p { font-size: 12px; color: var(--muted); line-height: 1.4; }
-
-  /* ── FAQ ── */
-  .faq {
-    background: #0A0F1E;
-    padding: 70px 20px;
-  }
-  .faq h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(28px, 6vw, 44px);
-    text-align: center;
-    margin-bottom: 36px;
-  }
-  .faq-list { max-width: 660px; margin: 0 auto; }
-  .faq-item {
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    padding: 20px 0;
-  }
-  .faq-item h3 { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
-  .faq-item p { font-size: 14px; color: var(--muted); line-height: 1.6; }
-
-  /* ── FINAL CTA ── */
-  .final-cta {
-    background: linear-gradient(135deg, #0D1B3E, #091226);
-    padding: 80px 20px;
-    text-align: center;
-    border-top: 1px solid rgba(0,201,167,0.2);
-  }
-  .final-cta h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(34px, 8vw, 60px);
-    margin-bottom: 12px;
-  }
-  .final-cta p { color: var(--muted); font-size: 15px; margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; }
-
-  .btn-cta-gold {
-    display: inline-block;
-    background: var(--gold);
-    color: var(--navy2);
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 18px;
-    font-weight: 800;
-    padding: 20px 48px;
-    border-radius: 50px;
-    text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 8px 30px rgba(255,182,39,0.35);
-  }
-  .btn-cta-gold:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(255,182,39,0.5);
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    background: #040810;
-    padding: 24px 20px;
-    text-align: center;
-    font-size: 12px;
-    color: #3A5A6A;
-    border-top: 1px solid rgba(255,255,255,0.04);
-  }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .hero > * { animation: fadeUp 0.7s ease both; }
-  .hero > *:nth-child(1) { animation-delay: 0.1s; }
-  .hero > *:nth-child(2) { animation-delay: 0.2s; }
-  .hero > *:nth-child(3) { animation-delay: 0.35s; }
-  .hero > *:nth-child(4) { animation-delay: 0.5s; }
-
-  /* pulse on CTA */
-  @keyframes pulse {
-    0%, 100% { box-shadow: 0 8px 30px rgba(0,201,167,0.35); }
-    50%       { box-shadow: 0 8px 50px rgba(0,201,167,0.6); }
-  }
-  .btn-cta { animation: pulse 2.5s ease-in-out infinite; }
+@media (max-width: 580px) {
+  .hero-h1 { font-size: 46px; }
+  .cta-headline { font-size: 38px; }
+  .nav-price { display: none; }
+  .preco-valor { font-size: 80px; }
+}
 </style>
 </head>
 <body>
 
-<!-- TOP BAR -->
-<div class="topbar">🎓 ENEM 2025 — Vagas nas melhores universidades esperam por você</div>
+<!-- TICKER — faixa editorial única -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item">ENEM 2025 <strong>—</strong> MÉDIA DE REDAÇÃO: 671 PONTOS</span>
+    <span class="ticker-item">APENAS <strong>0,1%</strong> CHEGA A 1000</span>
+    <span class="ticker-item">PROPOSTA DE INTERVENÇÃO INCOMPLETA: <strong>−40 PONTOS</strong></span>
+    <span class="ticker-item">FUGA DE TEMA: <strong>ZERA TODAS AS COMPETÊNCIAS</strong></span>
+    <span class="ticker-item">R$27 · ACESSO IMEDIATO · <strong>GARANTIA 7 DIAS</strong></span>
+    <span class="ticker-item">ENEM 2025 <strong>—</strong> MÉDIA DE REDAÇÃO: 671 PONTOS</span>
+    <span class="ticker-item">APENAS <strong>0,1%</strong> CHEGA A 1000</span>
+    <span class="ticker-item">PROPOSTA DE INTERVENÇÃO INCOMPLETA: <strong>−40 PONTOS</strong></span>
+    <span class="ticker-item">FUGA DE TEMA: <strong>ZERA TODAS AS COMPETÊNCIAS</strong></span>
+    <span class="ticker-item">R$27 · ACESSO IMEDIATO · <strong>GARANTIA 7 DIAS</strong></span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">Redação <em>Nota 1000</em></div>
+  <div class="nav-right">
+    <span class="nav-price">R$ 27 — pagamento único</span>
+    <a href="https://pay.cakto.com.br/ng6m7zg_886921" class="nav-btn">Garantir acesso</a>
+  </div>
+</nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="container">
-    <div class="hero-tag">GUIA COMPLETO PARA CALOUROS</div>
-    <h1>
-      REDAÇÃO
-      <span class="line2">NOTA</span>
-      <span class="line3">1000</span>
-      NO ENEM
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <span>Guia completo</span>
+      ENEM 2025 · Para calouros
+    </div>
+    <h1 class="hero-h1">
+      Saber escrever<br>
+      não é o mesmo<br>
+      <em>que saber o jogo.</em>
     </h1>
-    <p class="hero-sub">
-      O método que transforma calouros em redatores de alta nota —
-      mesmo sem nunca ter feito o ENEM antes.
+    <p class="hero-body">
+      O corretor do ENEM segue uma grade rígida de 5 competências.
+      Quem não conhece essa grade perde pontos sem entender por quê.
+      <strong>Este guia decodifica as regras do jogo.</strong>
     </p>
-  </div>
-</section>
-
-<!-- PAIN -->
-<section class="pain">
-  <div class="container">
-    <h2>Você sabia que <span class="red">a maioria</span> perde pontos<br>por erros evitáveis?</h2>
-    <p>Esses são os erros que derrubam a nota de quem não tem o método certo:</p>
-    <div class="pain-grid">
-      <div class="pain-item">😰 A média de redação caiu para <strong>671 pontos</strong> no ENEM 2023</div>
-      <div class="pain-item">😰 Só <strong>0,1% dos candidatos</strong> conseguem nota 1000</div>
-      <div class="pain-item">😰 Proposta de intervenção incompleta pode custar <strong>até 40 pontos</strong></div>
-      <div class="pain-item">😰 Fuga de tema zera <strong>todas as competências</strong> de uma vez</div>
-      <div class="pain-item">😰 Conectivos errados derrubam a nota de <strong>Coesão para zero</strong></div>
-      <div class="pain-item">😰 Sem repertório, é impossível tirar nota máxima na <strong>Competência III</strong></div>
-    </div>
-  </div>
-</section>
-
-<!-- SOLUTION -->
-<section class="solution">
-  <div class="container">
-    <h2>Existe um <span>método comprovado.</span><br>E agora ele é seu.</h2>
-    <p>7 capítulos que cobrem tudo que você precisa saber para dominar a redação do ENEM</p>
-
-    <div class="book-wrap">
-      <div class="book">
-        <div class="book-label">📥 EBOOK DIGITAL — DOWNLOAD IMEDIATO</div>
-        <div class="book-title">REDAÇÃO <span>NOTA</span></div>
-        <div class="book-num">1000</div>
-        <div class="book-sub">O Guia Completo para Quem Vai Fazer pela Primeira Vez</div>
-        <div class="book-badges">
-          <span class="book-badge">7 capítulos</span>
-          <span class="book-badge">30 dias de treino</span>
-          <span class="book-badge">Redações comentadas</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CHAPTERS -->
-<section class="chapters">
-  <div class="container">
-    <h2>O que você vai aprender</h2>
-    <p class="sub">Cada capítulo foi pensado para resolver uma dor específica do calouro</p>
-    <div class="chapter-list">
-      <div class="chapter-item">
-        <div class="ch-num">01</div>
-        <div class="ch-info">
-          <h3>Como a Redação do ENEM é Corrigida</h3>
-          <p>Os 5 critérios de avaliação explicados de forma simples. Saiba exatamente o que o corretor quer ver em cada linha do seu texto.</p>
-        </div>
-      </div>
-      <div class="chapter-item">
-        <div class="ch-num">02</div>
-        <div class="ch-info">
-          <h3>Entendendo o Tema</h3>
-          <p>Como interpretar a proposta e nunca fugir do tema — o erro mais fatal que zera todas as competências de uma vez.</p>
-        </div>
-      </div>
-      <div class="chapter-item">
-        <div class="ch-num">03</div>
-        <div class="ch-info">
-          <h3>A Estrutura Perfeita</h3>
-          <p>Introdução, desenvolvimento e conclusão com proposta de intervenção completa. Os 5 elementos obrigatórios que garantem nota máxima.</p>
-        </div>
-      </div>
-      <div class="chapter-item">
-        <div class="ch-num">04</div>
-        <div class="ch-info">
-          <h3>Repertório Sociocultural</h3>
-          <p>Como usar dados, citações e exemplos poderosos mesmo sem ter lido muito. Inclui repertório curinga para qualquer tema.</p>
-        </div>
-      </div>
-      <div class="chapter-item">
-        <div class="ch-num">05</div>
-        <div class="ch-info">
-          <h3>Os Conectivos que Fazem a Diferença</h3>
-          <p>Coesão e coerência na prática com tabela completa de conectivos e exemplos de parágrafos com e sem o método.</p>
-        </div>
-      </div>
-      <div class="chapter-item">
-        <div class="ch-num">06</div>
-        <div class="ch-info">
-          <h3>Redações Nota 1000 Comentadas</h3>
-          <p>Análise de redações reais com anotações detalhadas do que cada parte fez de certo. Aprenda vendo quem já chegou lá.</p>
-        </div>
-      </div>
-      <div class="chapter-item">
-        <div class="ch-num">07</div>
-        <div class="ch-info">
-          <h3>Plano de Treino em 30 Dias</h3>
-          <p>Cronograma prático semana a semana para você chegar ao ENEM com confiança e consistência.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROOF -->
-<section class="proof">
-  <div class="container">
-    <h2>Quem seguiu o método, <span>tirou nota alta</span></h2>
-    <div class="testimonials">
-      <div class="testimonial">
-        <div class="stars">★★★★★</div>
-        <p>"Finalmente entendi como funciona a correção. A parte dos conectivos mudou completamente minha escrita."</p>
-        <div class="author">— Marina S., aprovada em Direito na UFMG</div>
-      </div>
-      <div class="testimonial">
-        <div class="stars">★★★★★</div>
-        <p>"Estava com medo de fugir do tema. Depois de ler o capítulo 2, nunca mais errei isso. Tirei 920 na redação."</p>
-        <div class="author">— João P., 1º ano do ENEM</div>
-      </div>
-      <div class="testimonial">
-        <div class="stars">★★★★★</div>
-        <p>"O plano de 30 dias foi o que mais me ajudou. Antes eu treinava aleatório. Agora tenho método."</p>
-        <div class="author">— Camila R., aprovada em Medicina</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section class="pricing">
-  <div class="container">
-    <h2>Garanta seu acesso <span class="teal">agora</span></h2>
-    <p>Oferta por tempo limitado — sem mensalidade, sem renovação automática</p>
-
-    <div class="price-box">
-      <div class="price-old">De R$ 97,00</div>
-      <div class="price-label">Por apenas</div>
-      <div class="price-main">R$27</div>
-      <div class="price-installment">Pagamento único • Acesso vitalício</div>
-
-      <div class="whats-inside">
-        <h4>O QUE VOCÊ RECEBE</h4>
-        <div class="inside-item">Ebook completo — 7 capítulos em PDF</div>
-        <div class="inside-item">Tabela de conectivos para colar no caderno</div>
-        <div class="inside-item">Plano de treino de 30 dias</div>
-        <div class="inside-item">Redações nota 1000 comentadas</div>
-        <div class="inside-item">Download imediato após o pagamento</div>
-      </div>
-
-      <a href="https://pay.cakto.com.br/ng6m7zg_886921" class="btn-cta">
-        QUERO MINHA NOTA 1000 AGORA
-        <small>Clique e pague com Pix em segundos →</small>
+    <div class="hero-cta-group">
+      <a href="https://pay.cakto.com.br/ng6m7zg_886921" class="btn-main">
+        Ver o método — R$27
+        <span class="arrow">→</span>
       </a>
+      <div class="hero-micro">
+        <span>🛡 Garantia 7 dias</span>
+        <span class="sep">·</span>
+        <span>⚡ Download imediato</span>
+        <span class="sep">·</span>
+        <span>Pix</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-num">1000</div>
+    <div class="hero-right-content">
+      <div class="hero-tag">SIMULAÇÃO DE RESULTADO</div>
+      <div>
+        <div class="comp-list">
+          <div class="comp-item">
+            <span class="comp-num">I</span>
+            <div class="comp-bar-wrap"><div class="comp-bar" style="animation-delay:0.3s"></div></div>
+            <span class="comp-name">Norma culta</span>
+            <span class="comp-score">200</span>
+          </div>
+          <div class="comp-item">
+            <span class="comp-num">II</span>
+            <div class="comp-bar-wrap"><div class="comp-bar" style="animation-delay:0.45s"></div></div>
+            <span class="comp-name">Tema</span>
+            <span class="comp-score">200</span>
+          </div>
+          <div class="comp-item">
+            <span class="comp-num">III</span>
+            <div class="comp-bar-wrap"><div class="comp-bar" style="animation-delay:0.6s"></div></div>
+            <span class="comp-name">Argumentação</span>
+            <span class="comp-score">200</span>
+          </div>
+          <div class="comp-item">
+            <span class="comp-num">IV</span>
+            <div class="comp-bar-wrap"><div class="comp-bar" style="animation-delay:0.75s"></div></div>
+            <span class="comp-name">Coesão</span>
+            <span class="comp-score">200</span>
+          </div>
+          <div class="comp-item">
+            <span class="comp-num">V</span>
+            <div class="comp-bar-wrap"><div class="comp-bar" style="animation-delay:0.9s"></div></div>
+            <span class="comp-name">Intervenção</span>
+            <span class="comp-score">200</span>
+          </div>
+        </div>
+        <div class="comp-total">
+          <span class="comp-total-label">Total</span>
+          <span class="comp-total-num">1000</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RUPTURA EDITORIAL -->
+<div class="ruptura reveal">
+  <p class="ruptura-text">
+    A redação não avalia sua inteligência.<br>
+    <strong>Avalia se você conhece as regras do corretor.</strong>
+  </p>
+  <span class="ruptura-num" aria-hidden="true">671</span>
+</div>
+
+<!-- DOR -->
+<section class="dor-section">
+  <div class="dor-header">
+    <div class="section-num-giant" aria-hidden="true">01</div>
+    <div>
+      <p class="section-label-sm">Por que a nota não sobe</p>
+      <h2 class="section-h">Os erros que<br>ninguém te <em>contou</em></h2>
+      <p class="section-sub">Estes são os padrões que derrubam a nota de quem vai bem nas outras disciplinas — mas nunca recebeu um mapa real da correção.</p>
+    </div>
+  </div>
+
+  <div class="dor-grid">
+    <div class="dor-item reveal">
+      <span class="dor-count">40</span>
+      <p class="dor-hl">pontos perdidos por proposta de intervenção <mark>incompleta</mark></p>
+      <p class="dor-body">A maioria escreve a conclusão sem os 5 elementos obrigatórios. O desconto é automático — sem aviso.</p>
+    </div>
+    <div class="dor-item reveal d2">
+      <span class="dor-count">0</span>
+      <p class="dor-hl">pontos em todas as competências na <mark>fuga de tema</mark></p>
+      <p class="dor-body">Um único erro de interpretação no enunciado e horas de preparo vão por água abaixo de uma vez só.</p>
+    </div>
+    <div class="dor-item reveal d4">
+      <span class="dor-count">120</span>
+      <p class="dor-hl">pontos — o teto da Competência III <mark>sem repertório</mark></p>
+      <p class="dor-body">Argumentar sem dados, citações ou referências culturais impede de alcançar a faixa máxima nessa competência.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CAPÍTULOS -->
+<section class="chapters-section">
+  <div class="chapters-inner">
+    <div class="chapters-header">
+      <div>
+        <p class="section-label-sm" style="color:rgba(255,255,255,0.25)">O que você vai aprender</p>
+        <h2 class="section-h" style="color:var(--cream)">Sete capítulos.<br><em>Um mapa</em> claro.</h2>
+      </div>
+      <p class="chapters-header-right">
+        Cada capítulo foi desenhado para resolver uma dor específica.
+        Do diagnóstico à nota — sem promessas vagas.
+      </p>
     </div>
 
-    <div class="guarantee">
-      <div class="guarantee-icon">🛡️</div>
-      <div class="guarantee-text">
-        <h4>Garantia de 7 dias</h4>
-        <p>Se você não ficar satisfeito por qualquer motivo, devolvemos 100% do seu dinheiro. Sem perguntas.</p>
+    <div class="chapter-row reveal">
+      <span class="ch-number">01</span>
+      <div class="ch-meta">
+        <p class="ch-tag">Fundação</p>
+        <h3 class="ch-title">Como a redação é corrigida</h3>
+      </div>
+      <p class="ch-desc">Os 5 critérios do INEP explicados com exemplos reais. Você passa a saber o que o corretor marca — e o que ele desconta — em cada linha.</p>
+    </div>
+    <div class="chapter-row reveal d1">
+      <span class="ch-number">02</span>
+      <div class="ch-meta">
+        <p class="ch-tag">Segurança</p>
+        <h3 class="ch-title">Entendendo o tema sem erros fatais</h3>
+      </div>
+      <p class="ch-desc">O método de checagem em 3 etapas que elimina a fuga de tema — o erro que zera todas as competências de uma só vez.</p>
+    </div>
+    <div class="chapter-row reveal d2">
+      <span class="ch-number">03</span>
+      <div class="ch-meta">
+        <p class="ch-tag">Estrutura</p>
+        <h3 class="ch-title">A arquitetura da redação perfeita</h3>
+      </div>
+      <p class="ch-desc">Os 5 elementos obrigatórios da proposta de intervenção que garantem pontuação máxima na Competência V.</p>
+    </div>
+    <div class="chapter-row reveal d3">
+      <span class="ch-number">04</span>
+      <div class="ch-meta">
+        <p class="ch-tag">Argumentação</p>
+        <h3 class="ch-title">Repertório para qualquer tema</h3>
+      </div>
+      <p class="ch-desc">Como usar dados e referências culturais mesmo sem ter lido muito. Inclui repertório curinga para os temas mais recorrentes.</p>
+    </div>
+    <div class="chapter-row reveal d4">
+      <span class="ch-number">05</span>
+      <div class="ch-meta">
+        <p class="ch-tag">Coesão</p>
+        <h3 class="ch-title">Os conectivos que fazem a diferença</h3>
+      </div>
+      <p class="ch-desc">Tabela completa de conectivos com contexto de uso e exemplos de parágrafos antes e depois do método.</p>
+    </div>
+    <div class="chapter-row reveal d5">
+      <span class="ch-number">06</span>
+      <div class="ch-meta">
+        <p class="ch-tag">Análise</p>
+        <h3 class="ch-title">Redações nota 1000 comentadas</h3>
+      </div>
+      <p class="ch-desc">Análise de redações reais com anotações mostrando o que cada trecho fez de certo — e por que o corretor pontuou dessa forma.</p>
+    </div>
+    <div class="chapter-row reveal d6">
+      <span class="ch-number">07</span>
+      <div class="ch-meta">
+        <p class="ch-tag">Treino</p>
+        <h3 class="ch-title">Plano de 30 dias até a prova</h3>
+      </div>
+      <p class="ch-desc">Cronograma semana a semana com práticas por competência. Chegar no dia da prova com consistência, não com esperança.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFÍCIOS -->
+<section class="beneficios-section">
+  <div class="ben-left reveal">
+    <p class="section-label-sm">O que muda</p>
+    <h2 class="section-h">Você vai para a<br>prova sabendo<br>o que <em>escrever.</em></h2>
+    <p class="section-sub" style="margin-top:16px">Não é sobre escrever "melhor". É sobre entender o que o corretor quer ver — e entregar exatamente isso.</p>
+  </div>
+  <div class="ben-right">
+    <ul class="ben-list">
+      <li class="ben-item reveal">
+        <span class="ben-check">✓</span>
+        <p class="ben-text">Antes de escrever a primeira linha, você vai saber como <strong>cada parágrafo precisa ser estruturado</strong></p>
+      </li>
+      <li class="ben-item reveal d1">
+        <span class="ben-check">✓</span>
+        <p class="ben-text">Nunca mais vai travar na conclusão — os <strong>5 elementos da proposta de intervenção</strong> se tornam automáticos</p>
+      </li>
+      <li class="ben-item reveal d2">
+        <span class="ben-check">✓</span>
+        <p class="ben-text">Vai usar repertório com segurança, mesmo sem ter lido muito — com <strong>exemplos versáteis para dezenas de temas</strong></p>
+      </li>
+      <li class="ben-item reveal d3">
+        <span class="ben-check">✓</span>
+        <p class="ben-text">Vai entender o que diferencia um texto 800 de um texto 1000 — <strong>lendo redações reais comentadas</strong></p>
+      </li>
+      <li class="ben-item reveal d4">
+        <span class="ben-check">✓</span>
+        <p class="ben-text">Vai chegar no dia da prova com <strong>30 dias de treino progressivo</strong>, sem ter estudado de forma caótica</p>
+      </li>
+      <li class="ben-item reveal d5">
+        <span class="ben-check">✓</span>
+        <p class="ben-text"><strong>Acesso vitalício</strong> — revisita o guia antes de cada simulado, sem medo de perder o material</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- PROVA SOCIAL -->
+<section class="proof-section">
+  <div class="proof-header reveal">
+    <div>
+      <p class="section-label-sm">Resultados reais</p>
+      <h2 class="section-h">Quem aplicou<br>o método, <em>viu</em><br>diferença.</h2>
+    </div>
+    <p style="font-size:14px; color:var(--ink-3); max-width:32ch; line-height:1.6; align-self:flex-end">Depoimentos de estudantes que usaram o guia antes da prova.</p>
+  </div>
+  <div class="depo-grid">
+    <div class="depo reveal">
+      <p class="depo-stars">★★★★★</p>
+      <p class="depo-quote">Sempre tive pavor da conclusão. Depois de entender os 5 elementos da proposta de intervenção, parei de me perder. No simulado seguinte tirei 840 — melhor nota que já tive.</p>
+      <div class="depo-author"><strong>Marina S.</strong>Aprovada em Direito na UFMG</div>
+    </div>
+    <div class="depo reveal d2">
+      <p class="depo-stars">★★★★★</p>
+      <p class="depo-quote">O capítulo de repertório curinga me salvou. Nunca li muito e sempre ficava travado nos argumentos. Agora tenho uma lista de exemplos que funcionam em qualquer tema.</p>
+      <div class="depo-author"><strong>João P.</strong>1º ano fazendo o ENEM</div>
+    </div>
+    <div class="depo reveal d4">
+      <p class="depo-stars">★★★★★</p>
+      <p class="depo-quote">Achei que seria mais um ebook genérico. Mas ver as redações reais comentadas, parágrafo por parágrafo, mudou minha forma de ler e de escrever.</p>
+      <div class="depo-author"><strong>Camila R.</strong>Aprovada em Medicina</div>
+    </div>
+  </div>
+</section>
+
+<!-- OFERTA -->
+<section class="oferta-section" id="oferta">
+  <div class="oferta-left reveal">
+    <p class="section-label-sm">Acesso ao guia</p>
+    <h2 class="section-h" style="margin-bottom:32px">Tudo que você<br>precisa. Por<br><em>R$27.</em></h2>
+
+    <div class="preco-wrap">
+      <p class="preco-old"><s>R$ 136,00</s></p>
+      <div class="preco-valor">
+        <span class="preco-cifrao">R$</span>
+        27
+      </div>
+      <p class="preco-note">PAGAMENTO ÚNICO · SEM MENSALIDADE · SEM RENOVAÇÃO</p>
+    </div>
+
+    <div class="includes">
+      <div class="include-row">
+        <span class="include-name"><span class="include-dot"></span>Ebook completo — 7 capítulos em PDF</span>
+        <span class="include-val">R$49</span>
+      </div>
+      <div class="include-row">
+        <span class="include-name"><span class="include-dot"></span>Redações nota 1000 comentadas</span>
+        <span class="include-val">R$39</span>
+      </div>
+      <div class="include-row">
+        <span class="include-name"><span class="include-dot"></span>Plano de treino de 30 dias</span>
+        <span class="include-val">R$29</span>
+      </div>
+      <div class="include-row">
+        <span class="include-name"><span class="include-dot"></span>Lista de repertório curinga</span>
+        <span class="include-val">R$19</span>
+      </div>
+      <div class="include-row">
+        <span class="include-name"><span class="include-dot"></span>Tabela de conectivos</span>
+        <span class="include-val">incluso</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="oferta-right reveal d2">
+    <div class="oferta-cta-block">
+      <p class="oferta-cta-title">
+        Por R$27 e com garantia de 7 dias,<br>
+        <strong>o risco é zero.</strong>
+      </p>
+      <a href="https://pay.cakto.com.br/ng6m7zg_886921" class="btn-comprar">
+        Quero minha nota 1000 agora
+        <small>PIX — CONFIRMAÇÃO EM SEGUNDOS</small>
+      </a>
+      <div class="garantia">
+        <span class="garantia-icon">🛡️</span>
+        <div class="garantia-texto">
+          <strong>Garantia de 7 dias</strong>
+          Se não ficar satisfeito por qualquer motivo, devolvemos 100% do valor. Sem perguntas. Sem burocracia.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OBJEÇÕES -->
+<section class="obj-section">
+  <div class="obj-inner">
+    <div class="obj-left reveal">
+      <p class="section-label-sm" style="color:var(--ink-3)">Dúvidas honestas</p>
+      <h2 class="section-h">Talvez você<br>esteja<br><em>pensando…</em></h2>
+    </div>
+    <div class="obj-list">
+      <div class="obj-item reveal">
+        <p class="obj-q">Já estudei redação antes e minha nota não melhorou.</p>
+        <p class="obj-a">A maioria dos materiais ensina teoria sem mostrar o que o corretor realmente avalia. Este guia foi estruturado com base nos <strong>critérios oficiais do INEP</strong> — não em dicas de escrita. A diferença está em entender as regras do jogo, não em escrever "bonito".</p>
+      </div>
+      <div class="obj-item reveal d1">
+        <p class="obj-q">Ebook não vai mudar minha nota. Preciso de aula ao vivo.</p>
+        <p class="obj-a">O que muda a nota é praticar da forma certa. O guia inclui um <strong>plano de treino em 30 dias</strong> com exercícios progressivos, redações comentadas para comparar e checklist das 5 competências para se autocorrigir. Você aprende fazendo, não só lendo.</p>
+      </div>
+      <div class="obj-item reveal d2">
+        <p class="obj-q">Não tenho tempo pra estudar mais.</p>
+        <p class="obj-a">O plano de 30 dias foi desenhado para quem tem rotina. São <strong>blocos curtos de estudo e prática</strong> — não horas por dia. 30 minutos consistentes valem mais que um fim de semana intensivo.</p>
+      </div>
+      <div class="obj-item reveal d3">
+        <p class="obj-q">R$27 parece barato demais. Será que presta?</p>
+        <p class="obj-a">O preço foi definido para ser <strong>acessível para qualquer estudante do ensino médio</strong>. O conteúdo é técnico, direto e baseado nos critérios oficiais — e tem garantia de 7 dias. Você testa e decide.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- FAQ -->
-<section class="faq">
-  <div class="container">
-    <h2>Perguntas Frequentes</h2>
-    <div class="faq-list">
-      <div class="faq-item">
-        <h3>Como recebo o ebook após a compra?</h3>
-        <p>Imediatamente! Logo após o pagamento via Pix, você recebe o link de download no e-mail cadastrado. Acesso em segundos.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Funciona para quem nunca estudou redação?</h3>
-        <p>Sim! O guia foi criado especialmente para calouros que vão fazer o ENEM pela primeira vez. Tudo explicado do zero, sem assumir conhecimento prévio.</p>
-      </div>
-      <div class="faq-item">
-        <h3>É um curso em vídeo ou ebook?</h3>
-        <p>É um ebook em PDF, completo e objetivo. Você lê no celular, tablet ou computador, no seu ritmo, quando quiser.</p>
-      </div>
-      <div class="faq-item">
-        <h3>E se eu não gostar?</h3>
-        <p>Você tem 7 dias de garantia total. Se não gostar por qualquer motivo, é só pedir o reembolso que devolvemos 100% do valor.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Funciona para o ENEM 2025?</h3>
-        <p>Sim! O conteúdo é baseado nos critérios oficiais do INEP, que são os mesmos há anos. Totalmente atualizado para o ENEM 2025.</p>
+<section class="faq-section">
+  <p class="section-label-sm reveal">Perguntas frequentes</p>
+  <h2 class="section-h reveal d1" style="margin-bottom:48px">Respostas<br><em>diretas.</em></h2>
+
+  <div class="faq-item" onclick="this.classList.toggle('open')">
+    <div class="faq-q">Quanto tempo por dia preciso dedicar? <span class="indicator">+</span></div>
+    <p class="faq-a">O plano de 30 dias foi pensado para blocos de 30 a 60 minutos. Você não precisa reorganizar toda a sua rotina — precisa de consistência.</p>
+  </div>
+  <div class="faq-item" onclick="this.classList.toggle('open')">
+    <div class="faq-q">Serve para quem vai fazer o ENEM pela primeira vez? <span class="indicator">+</span></div>
+    <p class="faq-a">Foi feito exatamente para isso. O guia parte do zero — explica como a prova funciona antes de entrar em qualquer técnica. Se você já fez o ENEM antes, também vai achar utilidade nos capítulos de estrutura e repertório.</p>
+  </div>
+  <div class="faq-item" onclick="this.classList.toggle('open')">
+    <div class="faq-q">Como funciona o acesso após a compra? <span class="indicator">+</span></div>
+    <p class="faq-a">Após o pagamento, você recebe o ebook em formato digital imediatamente no e-mail cadastrado. Pode ler no celular, tablet ou computador. Acesso vitalício — sem prazo.</p>
+  </div>
+  <div class="faq-item" onclick="this.classList.toggle('open')">
+    <div class="faq-q">E se eu não gostar do ebook? <span class="indicator">+</span></div>
+    <p class="faq-a">Você tem 7 dias de garantia total. Se não estiver satisfeito por qualquer motivo, solicita o reembolso e devolvemos 100% — sem burocracia, sem perguntas.</p>
+  </div>
+  <div class="faq-item" onclick="this.classList.toggle('open')">
+    <div class="faq-q">O conteúdo é válido para o ENEM 2025? <span class="indicator">+</span></div>
+    <p class="faq-a">Sim. O guia é baseado nos critérios oficiais do INEP, que são estáveis há anos e se aplicam integralmente ao ENEM 2025.</p>
+  </div>
+  <div class="faq-item" onclick="this.classList.toggle('open')">
+    <div class="faq-q">Quais formas de pagamento? <span class="indicator">+</span></div>
+    <p class="faq-a">Cartão de crédito, Pix e boleto bancário. Pagamento único de R$27 — sem mensalidade, sem renovação automática.</p>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="cta-bg-text" aria-hidden="true">NOTA 1000</div>
+  <div class="cta-inner">
+    <p class="cta-eyebrow reveal">Sua próxima redação</p>
+    <h2 class="cta-headline reveal d1">
+      O corretor vai ler.<br>
+      <strong>A questão é<br>o que ele<br>vai encontrar.</strong>
+    </h2>
+    <div class="cta-bottom reveal d2">
+      <a href="https://pay.cakto.com.br/ng6m7zg_886921" class="btn-main">
+        Garantir meu acesso — R$27
+        <span class="arrow">→</span>
+      </a>
+      <div class="cta-trust">
+        <div class="trust-item"><span class="trust-dot"></span> Garantia de 7 dias</div>
+        <div class="trust-item"><span class="trust-dot"></span> Download imediato</div>
+        <div class="trust-item"><span class="trust-dot"></span> Acesso vitalício</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FINAL CTA -->
-<section class="final-cta">
-  <div class="container">
-    <h2>Sua nota 1000 começa<br><span class="teal">com uma decisão.</span></h2>
-    <p>Por R$27 você tem o mapa completo. O ENEM está chegando — cada dia conta.</p>
-    <a href="https://pay.cakto.com.br/ng6m7zg_886921" class="btn-cta-gold">
-      QUERO TIRAR NOTA 1000 →
-    </a>
-    <p style="margin-top:16px; font-size:12px; color:#3A5A6A;">🛡️ Garantia de 7 dias &nbsp;•&nbsp; 📥 Download imediato &nbsp;•&nbsp; 💳 Pix</p>
+<!-- P.S. -->
+<section class="ps-section">
+  <div class="ps-inner reveal">
+    <p class="ps-label">P.S.</p>
+    <p class="ps-text">
+      A média de redação no ENEM é 671 pontos. Isso significa que a maioria está deixando pontos na mesa — não por falta de inteligência, mas por não saber as regras do jogo.
+      <strong>Por R$27 com garantia de 7 dias, você tem acesso ao guia completo que decodifica esses critérios.</strong>
+      Se em uma semana você não ver diferença, eu devolvo tudo. Sem perguntas.
+    </p>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <p>© 2025 Redação Nota 1000 no ENEM — Produto Digital</p>
-  <p style="margin-top:6px;">Este produto é um ebook digital e não possui vínculo com o INEP ou MEC.</p>
+  <div class="footer-logo">Redação <em>Nota 1000</em></div>
+  <div class="footer-legal">
+    © 2025 Redação Nota 1000 no ENEM — Produto Digital<br>
+    Este ebook não possui vínculo com o INEP ou MEC.
+  </div>
 </footer>
 
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Nav scroll state
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+</script>
 </body>
 </html>
