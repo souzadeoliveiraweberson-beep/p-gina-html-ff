@@ -1,0 +1,46 @@
+@media print {
+  @page {
+    size: A4;
+    margin: 1cm;
+  }
+
+  body {
+    background-color: white !important;
+    color: black !important;
+    font-family: var(--font-old-style) !important;
+  }
+
+  .no-print { display: none !important; }
+
+  .print-only { display: block !important; }
+
+  .print-form {
+    width: 100%;
+    page-break-after: always;
+  }
+
+  .print-form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: var(--border-width) solid black;
+    padding-bottom: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+
+  .print-checkbox {
+    width: 24px !important;
+    height: 24px !important;
+    border: var(--border-width) solid black !important;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: var(--space-2);
+  }
+
+  .print-candidate-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--space-2);
+    font-size: var(--text-lg);
+  }
+}\n
